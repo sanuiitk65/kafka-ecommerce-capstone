@@ -1,6 +1,6 @@
 package com.ecommerce.order.scheduler;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 import com.ecommerce.order.entity.OutboxEvent;
 import com.ecommerce.order.entity.OutboxStatus;
 import com.ecommerce.order.event.OrderCreatedEvent;
