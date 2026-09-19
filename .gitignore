@@ -1,0 +1,21 @@
+# Mac OS
+.DS_Store
+
+# IDEs
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+
+# Maven / Build outputs
+target/
+build/
+*.class
+*.jar
+*.war
+
+# Logs & Data
+*.log
+postgres_data/
