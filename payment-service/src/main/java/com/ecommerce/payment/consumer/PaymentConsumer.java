@@ -5,13 +5,13 @@ import com.ecommerce.payment.exception.TransientPaymentException;
 import com.ecommerce.payment.service.PaymentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.annotation.BackOff;
 import org.springframework.kafka.annotation.DltHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.RetryableTopic;
 import org.springframework.kafka.retrytopic.TopicSuffixingStrategy;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
-import org.springframework.retry.annotation.Backoff;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,8 +23,8 @@ public class PaymentConsumer {
 
     // Resilient Tiered Retries (Phase 5, 6 & 9)
     @RetryableTopic(
-            attempts = "3",
-            backoff = @Backoff(delay = 1000, multiplier = 2.0), // Exponential Backoff: 1s -> 2s
+            attempts = "4",
+            backOff = @BackOff(delay = 1000, multiplier = 2.0), // Exponential Backoff: 1s -> 2s
             topicSuffixingStrategy = TopicSuffixingStrategy.SUFFIX_WITH_INDEX_VALUE,
             include = { TransientPaymentException.class }
     )
